@@ -1,0 +1,28 @@
+### Port Attach ###
+curl -X POST -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:8774/v2/servers/a64bc95c-2373-4666-8233-27b3fe0cfac6/os-interface -d '{
+    "interfaceAttachment": {
+        "port_id": "bf04efe4-e24e-4ae6-b384-4dcdd2450327"
+    }
+}' 
+
+### Get ports ###
+curl -X GET -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:9696/v2.0/ports | python3 -m json.tool
+
+
+openstack endpoint list
+
+### Stop Server ###
+curl -X POST -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:8774/v2/servers/a64bc95c-2373-4666-8233-27b3fe0cfac6/action -d '{
+    "os-stop" : null
+}' 
+
+### Start Server ###
+curl -X POST -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:8774/v2/servers/a64bc95c-2373-4666-8233-27b3fe0cfac6/action -d '{
+    "os-start" : null
+}'
+
+### Get Servers ###
+curl -X GET -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:8774/v2/servers | python3 -m json.tool
+
+### Port Detach ###
+curl -X DELETE -H "Content-Type: application/json; charset=UTF-8" -H "X-Auth-token: ${token}" http://100.67.193.40:8774/v2/servers/a64bc95c-2373-4666-8233-27b3fe0cfac6/os-interface/3bc66b3a-6d8c-4cf3-a5db-69bb41e86be3
